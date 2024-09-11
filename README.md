@@ -27,3 +27,7 @@ Vá para a seção [estrutura do curso](./lessons/_course-structure_.md).
 ___
 
 Este é mais um curso da [**Escola Talking About Testing**](https://udemy.com/user/walmyr).
+
+npx cypress run -> roda os testes no terminal
+
+npx cypress open -> abre o cypress 
