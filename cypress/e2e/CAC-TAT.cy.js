@@ -225,4 +225,14 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       })
    })
 
+   it('Encontra o gato escondido e altera algumas informações na tela', function(){
+    cy.get('#cat')
+      .invoke('show')
+      .should('be.visible')
+    cy.get('#title')
+      .invoke('text', 'Cat TAT')
+    cy.get('#subtitle')
+      .invoke('text', 'Eu ❤️ gatos!')
+   })
+
 })
