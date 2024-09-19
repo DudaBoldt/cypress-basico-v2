@@ -12,7 +12,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
   })
 
   Cypress._.times(3, function() {
-    it.only('preenche os campos obrigatórios e envia o formulario', function(){
+    it('preenche os campos obrigatórios e envia o formulario', function(){
       const textoLongo = 'Quero um big mac bem delicioso... Com a fome que eu to, comeria dois kkk'
       
       cy.clock() //congela o relogio
@@ -190,5 +190,21 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     cy.contains('Talking About Testing').should('be.visible')
   })
 
-  
+  it('exibe e esconde as mensagens de sucesso e erro usando o .invoke', () => {
+    cy.get('.success')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .and('contain', 'Mensagem enviada com sucesso.')
+      .invoke('hide')
+      .should('not.be.visible')
+    cy.get('.error')
+      .should('not.be.visible')
+      .invoke('show')
+      .should('be.visible')
+      .and('contain', 'Valide os campos obrigatórios!')
+      .invoke('hide')
+      .should('not.be.visible')
+  })
+
 })
