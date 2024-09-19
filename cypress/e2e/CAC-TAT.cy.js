@@ -11,22 +11,24 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     cy.title().should('eq', 'Central de Atendimento ao Cliente TAT')
   })
 
-  it('preenche os campos obrigatórios e envia o formulario', function(){
-    const textoLongo = 'Quero um big mac bem delicioso... Com a fome que eu to, comeria dois kkk'
-    
-    cy.clock() //congela o relogio
-    
-    cy.get('#firstName').type('Igor')
-    cy.get('#lastName').type('Santos')
-    cy.get('#email').type('email@legal.com')
-    cy.get('#open-text-area').type(textoLongo, {delay: 0})
-    cy.contains('button', 'Enviar').click()
-
-    cy.get('.success').should('be.visible')
-
-    cy.tick(THREE_SECONDS_IN_MS) 
-
-    cy.get('.success').should('not.be.visible')
+  Cypress._.times(3, function() {
+    it.only('preenche os campos obrigatórios e envia o formulario', function(){
+      const textoLongo = 'Quero um big mac bem delicioso... Com a fome que eu to, comeria dois kkk'
+      
+      cy.clock() //congela o relogio
+      
+      cy.get('#firstName').type('Igor')
+      cy.get('#lastName').type('Santos')
+      cy.get('#email').type('email@legal.com')
+      cy.get('#open-text-area').type(textoLongo, {delay: 0})
+      cy.contains('button', 'Enviar').click()
+  
+      cy.get('.success').should('be.visible')
+  
+      cy.tick(THREE_SECONDS_IN_MS) 
+  
+      cy.get('.success').should('not.be.visible')
+    })
   })
 
   it('exibe mensagem de erro ao enviar o formulário com um email com formatação inválida', function(){
